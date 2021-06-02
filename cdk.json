@@ -12,6 +12,12 @@
     "@aws-cdk/aws-ecs-patterns:removeDefaultDesiredCount": true,
     "@aws-cdk/aws-rds:lowercaseDbIdentifier": true,
     "@aws-cdk/aws-efs:defaultEncryptionAtRest": true,
-    "@aws-cdk/aws-lambda:recognizeVersionProps": true
+    "@aws-cdk/aws-lambda:recognizeVersionProps": true,
+    "basename": "fgmtbe-ses-receive",
+    "tablename_exportname": "fgmtbe-ses-receive-tablename",
+    "functionarn_exportname": "fgmtbe-ses-receive-functionarn",
+    "topicname": "fgmtbe-ses-receive-topic",
+    "domain": "ses.fgmt.be",
+    "s3_keyprefix": "mail/"
   }
 }

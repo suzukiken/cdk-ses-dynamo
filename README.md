@@ -1,14 +1,24 @@
-# Welcome to your CDK TypeScript project!
+# CDK Project to create SES Rule which saves mail to S3 and Lambda which make record to table along with S3 content.
 
-This is a blank project for TypeScript development with CDK.
+## Resources to be created
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+* SES Ruleset
+* DynamoDB table
+* S3 Bucket
+* Lambda Function
 
-## Useful commands
+## Purpose
 
- * `npm run build`   compile typescript to js
- * `npm run watch`   watch for changes and compile
- * `npm run test`    perform the jest unit tests
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk synth`       emits the synthesized CloudFormation template
+For testing sending email.
+
+## Commands
+
+* `npm install`
+* `cdk deploy CdksesDbStack`
+* `cdk deploy CdksesFunctionStack`
+* `cdk deploy CdksesRuleStack`
+
+## Parameters
+
+Defined in cdk.json 
+

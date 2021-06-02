@@ -1,21 +1,24 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from '@aws-cdk/core';
-import { CdksesStack } from '../lib/cdkses-stack';
+import { CdksesRuleStack } from '../lib/cdkses-rule-stack';
+import { CdksesDbStack } from '../lib/cdkses-db-stack';
+import { CdksesFunctionStack } from '../lib/cdkses-function-stack';
 
 const app = new cdk.App();
-new CdksesStack(app, 'CdksesStack', {
-  /* If you don't specify 'env', this stack will be environment-agnostic.
-   * Account/Region-dependent features and context lookups will not work,
-   * but a single synthesized template can be deployed anywhere. */
 
-  /* Uncomment the next line to specialize this stack for the AWS Account
-   * and Region that are implied by the current CLI configuration. */
-  // env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION },
+const dbStack = new CdksesDbStack(app, 'CdksesDbStack', {
+  env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: 'ap-northeast-1' },
+})
 
-  /* Uncomment the next line if you know exactly what Account and Region you
-   * want to deploy the stack to. */
-  // env: { account: '123456789012', region: 'us-east-1' },
+const functionStack = new CdksesFunctionStack(app, 'CdksesFunctionStack', {
+  env: { account: process.env.CDK_DEFAULT_ACCOUNT, 
+    region: 'ap-northeast-1' },
+})
 
-  /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
-});
+const ruleStack = new CdksesRuleStack(app, 'CdksesRuleStack', {
+  env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: 'us-east-1' },
+})
+
+functionStack.addDependency(ruleStack)
+functionStack.addDependency(dbStack)

@@ -11,7 +11,7 @@ pip install -r test/requirements.txt
 
 ### get cloudformation outputs and save it as json
 ```
-python test/getoutputs.py test/outputs.json
+python test/getoutputs.py -o test/outputs.json
 python test/test_send_email.py -o test/outputs.json -c cdk.json
 ```
 

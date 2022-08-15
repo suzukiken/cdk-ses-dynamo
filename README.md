@@ -15,10 +15,20 @@ For testing sending email.
 
 * `npm install`
 * `cdk deploy CdksesDbStack`
-* `cdk deploy CdksesFunctionStack`
 * `cdk deploy CdksesRuleStack`
+* `cdk deploy CdksesFunctionStack`
 
-## Parameters
+## 注意
 
-Defined in cdk.json 
+一部のリソースはcloudfrontのus-east-1で作成する
+そのため
+```
+cdk bootstrap aws://アカウントID/us-east-1
+```
+が必要になるかもしれない
 
+
+## ReceiptRuleSetは手でActivateする
+
+どうやらCDKで作成されるReceiptRuleSetはdisableされているので、それをAWSコンソールなどから手でactiveに切り替える必要がある。
+これはCDKではどうにもならないように思われるが、詳しくはわからない。

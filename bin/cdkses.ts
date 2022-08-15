@@ -1,19 +1,18 @@
 #!/usr/bin/env node
-import 'source-map-support/register';
-import * as cdk from '@aws-cdk/core';
+import { App } from 'aws-cdk-lib';
 import { CdksesRuleStack } from '../lib/cdkses-rule-stack';
 import { CdksesDbStack } from '../lib/cdkses-db-stack';
 import { CdksesFunctionStack } from '../lib/cdkses-function-stack';
 
-const app = new cdk.App();
-
-const dbStack = new CdksesDbStack(app, 'CdksesDbStack', {
-  env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: 'ap-northeast-1' },
-})
+const app = new App();
 
 const functionStack = new CdksesFunctionStack(app, 'CdksesFunctionStack', {
   env: { account: process.env.CDK_DEFAULT_ACCOUNT, 
     region: 'ap-northeast-1' },
+})
+
+const dbStack = new CdksesDbStack(app, 'CdksesDbStack', {
+  env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: 'ap-northeast-1' },
 })
 
 const ruleStack = new CdksesRuleStack(app, 'CdksesRuleStack', {

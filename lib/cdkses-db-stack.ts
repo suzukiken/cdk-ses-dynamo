@@ -1,8 +1,9 @@
-import * as cdk from '@aws-cdk/core';
-import * as dynamodb from "@aws-cdk/aws-dynamodb";
+import * as dynamodb from "aws-cdk-lib/aws-dynamodb"
+import { Stack, StackProps, Fn, CfnOutput, RemovalPolicy } from 'aws-cdk-lib';
+import { Construct } from 'constructs';
 
-export class CdksesDbStack extends cdk.Stack {
-  constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+export class CdksesDbStack extends Stack {
+  constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
     
     const table = new dynamodb.Table(this, "Table", {
@@ -11,7 +12,7 @@ export class CdksesDbStack extends cdk.Stack {
         type: dynamodb.AttributeType.STRING,
       },
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
-      removalPolicy: cdk.RemovalPolicy.DESTROY,
+      removalPolicy: RemovalPolicy.DESTROY,
       pointInTimeRecovery: true,
       timeToLiveAttribute: 'expire'
     })
@@ -41,9 +42,10 @@ export class CdksesDbStack extends cdk.Stack {
       },
     })
     
-    new cdk.CfnOutput(this, 'TableName', { 
+    new CfnOutput(this, 'TableName', { 
       exportName: this.node.tryGetContext('tablename_exportname'), 
       value: table.tableName,
+      description: "Dynamodb table name"
     })
   }
 }

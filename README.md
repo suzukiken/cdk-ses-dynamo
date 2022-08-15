@@ -18,15 +18,14 @@ For testing sending email.
 * `cdk deploy CdksesRuleStack`
 * `cdk deploy CdksesFunctionStack`
 
-## 注意
+## リージョン
 
-一部のリソースはcloudfrontのus-east-1で作成する
-そのため
+CdksesRuleStackはus-east-1で作成するCloudFrontスタック
+そのためそのリージョンを指定して
 ```
 cdk bootstrap aws://アカウントID/us-east-1
 ```
 が必要になるかもしれない
-
 
 ## ReceiptRuleSetは手でActivateする
 

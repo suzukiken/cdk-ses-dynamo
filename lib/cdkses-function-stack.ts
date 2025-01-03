@@ -21,7 +21,7 @@ export class CdksesFunctionStack extends Stack {
       account = props.env.account
     }
 
-    const topic = sns.Topic.fromTopicArn(this, 'Topic', `arn:aws:sns:us-east-1:${account}:${topicname}`)
+    const topic = sns.Topic.fromTopicArn(this, 'Topic', `arn:aws:sns:ap-northeast-1:${account}:${topicname}`)
     
     const lambda_function = new lambda.Function(this, 'Function', {
       code: lambda.Code.fromAsset('lambda'),
@@ -43,3 +43,4 @@ export class CdksesFunctionStack extends Stack {
     })
   }
 }
+

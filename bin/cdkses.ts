@@ -16,7 +16,7 @@ const dbStack = new CdksesDbStack(app, 'CdksesDbStack', {
 })
 
 const ruleStack = new CdksesRuleStack(app, 'CdksesRuleStack', {
-  env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: 'us-east-1' },
+  env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: 'ap-northeast-1' },
 })
 
 functionStack.addDependency(ruleStack)
